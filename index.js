@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 let qrCodeImage = '';
 
 create({
-  session: 'myzap-session',
+  session: 'myzap-full',
   multidevice: true,
   headless: true
 })
@@ -26,15 +26,15 @@ ev.on('qr', (base64Qr) => {
 
 app.get('/', (req, res) => {
   if (qrCodeImage) {
-    res.send(`
+    res.send(\`
       <h1>Escaneie o QR Code para conectar no WhatsApp</h1>
-      <img src="${qrCodeImage}" />
-    `);
+      <img src="\${qrCodeImage}" />
+    \`);
   } else {
     res.send('<h2>Aguardando geração do QR Code...</h2>');
   }
 });
 
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+  console.log(\`Servidor rodando na porta \${port}\`);
 });
